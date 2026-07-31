@@ -107,6 +107,13 @@ vcpkg_extract_source_archive(
 	NO_REMOVE_ONE_LEVEL
 )
 
+vcpkg_download_distfile(
+	CMARK_GFM_COPYING
+	URLS "https://raw.githubusercontent.com/swiftlang/swift-cmark/924936d0427cb25a61169739a7660230bffa6ea6/COPYING"
+	FILENAME "swift-cmark-COPYING-924936d0427cb25a61169739a7660230bffa6ea6"
+	SHA512 79e623b6548b5215b1614243d08f33324da430c7be55376f4b45b142ac6fbdb83a74a82df634e3d526d48e8a360393fdcee8714ca98fb1854fe176c8cf0d2c74
+)
+
 if(DEBUG_INFO_ARCHIVE)
 	vcpkg_extract_source_archive(
 		DEBUG_INFO_PATH
@@ -201,7 +208,9 @@ block(SCOPE_FOR VARIABLES)
 endblock()
 
 vcpkg_install_copyright(
-	FILE_LIST "${BINDIST_PATH}/LICENSE"
+	FILE_LIST
+		"${BINDIST_PATH}/LICENSE"
+		"${CMARK_GFM_COPYING}"
 	COMMENT #[[ from README ]] [[
 The Slang code itself is under the Apache 2.0 with LLVM Exception license.
 
@@ -213,6 +222,7 @@ Builds of the core Slang tools depend on the following projects, either automati
 * [`spirv-headers`](https://github.com/KhronosGroup/SPIRV-Headers) (Modified MIT)
 * [`spirv-tools`](https://github.com/KhronosGroup/SPIRV-Tools) (Apache 2.0)
 * [`ankerl::unordered_dense::{map, set}`](https://github.com/martinus/unordered_dense) (MIT)
+* [`swift-cmark`](https://github.com/swiftlang/swift-cmark) (BSD-2-Clause and MIT)
 
 Slang releases may include [slang-llvm](https://github.com/shader-slang/slang-llvm) which includes [LLVM](https://github.com/llvm/llvm-project) under the license:
 
